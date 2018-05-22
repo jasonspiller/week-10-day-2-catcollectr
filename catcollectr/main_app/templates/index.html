@@ -1,43 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CatCollectr</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
-  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-
-
-</head>
-<body>
-
-  <header>
-    <h1>CatCollectr</h1>
+{% block content %}
+  {% for cat in cats %}
+    <a href="/{{ cat.id }}">
+    <p>Name: {{ cat.name }}</p>
+      {% if cat.age > 0 %}
+        <p>Age: {{ cat.age }}</p>
+      {% else %}
+        <p>Age: Kitten</p>
+      {% endif %}
+    </a>
     <hr />
-  </header>
-
-  <main>
-
-    {% for cat in cats %}
-      <a href="/{{ cat.id }}">
-      <p>Name: {{ cat.name }}</p>
-        {% if cat.age > 0 %}
-          <p>Age: {{ cat.age }}</p>
-        {% else %}
-          <p>Age: Kitten</p>
-        {% endif %}
-      </a>
-      <hr />
-    {% endfor %}
-
-  </main>
-
-  <footer>
-    &copy 2018 Jason Spiller. <em>All Rights Reserved.</em>
-  </footer>
-
-</body>
-</html>
+  {% endfor %}
+{% endblock %}
