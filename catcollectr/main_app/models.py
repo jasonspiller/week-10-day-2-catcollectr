@@ -11,6 +11,7 @@ class Cat(models.Model):
     description = models.CharField(max_length=200)
     age = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         """Output name."""

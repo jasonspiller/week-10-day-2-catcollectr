@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from .models import Cat
 from .forms import CatForm, LoginForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -63,3 +63,17 @@ def logout_view(request):
     """Logout."""
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def like_cat(request):
+    """Like button."""
+    cat_id = request.GET.get('cat_id', None)
+
+    likes = 0
+    if (cat_id):
+        cat = Cat.objects.get(id=int(cat_id))
+        if cat is not None:
+            likes = cat.likes + 1
+            cat.likes = likes
+            cat.save()
+    return HttpResponse(likes)
