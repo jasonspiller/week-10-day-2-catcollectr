@@ -11,3 +11,10 @@ class CatForm(forms.ModelForm):
 
         model = Cat
         fields = ['name', 'breed', 'description', 'age']
+
+
+class LoginForm(forms.Form):
+    """Login form."""
+
+    username = forms.CharField(label="Username", max_length=64)
+    password = forms.CharField(widget=forms.PasswordInput())
