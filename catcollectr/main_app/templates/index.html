@@ -3,19 +3,24 @@
 
 {% block content %}
   {% for cat in cats %}
-    <a href="/{{ cat.id }}">
-    <p>Name: {{ cat.name }}</p>
-      {% if cat.age > 0 %}
-        <p>Age: {{ cat.age }}</p>
-      {% else %}
-        <p>Age: Kitten</p>
-      {% endif %}
-    </a>
+    <p>
+      Name:
+      <a href="/{{ cat.id }}">{{ cat.name }}</a>
+    </p>
+    <p>
+      Adopted By:
+      <a href="/user/{{cat.user.username}}">{{cat.user.username }}</a>
+    </p>
+    {% if cat.age > 0 %}
+      <p>Age: {{ cat.age }}</p>
+    {% else %}
+      <p>Age: Kitten</p>
+    {% endif %}
     <hr />
   {% endfor %}
   <form action="post_url/" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Submit" />
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
   </form>
 {% endblock %}

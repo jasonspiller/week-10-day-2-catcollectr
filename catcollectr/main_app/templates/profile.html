@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<h2>{{ username }}'s collection:</h2>
+
+{% for cat in cats %}
+  <a href="/{{ cat.id }}">
+    <h3>{{ cat.name }}</h3>
+  </a>
+{% endfor %}
+
+{% endblock %}
